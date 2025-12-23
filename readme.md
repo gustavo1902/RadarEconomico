@@ -1,4 +1,4 @@
-# 📈 Radar Econômico
+# Radar Econômico
 
 O **Radar Econômico** é uma plataforma web de inteligência de dados desenvolvida para democratizar o acesso e a compreensão de indicadores macroeconômicos brasileiros. O sistema coleta dados oficiais em tempo real, processa séries históricas e as apresenta através de visualizações interativas e contextos educacionais.
 
