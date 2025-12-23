@@ -1,4 +1,3 @@
-// src/pages/Dashboard.tsx
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -32,7 +31,7 @@ export function Dashboard() {
   const latestValue = data?.[data.length - 1]?.valor;
 
   return (
-    <div className="pt-24 pb-12 bg-zinc-50">  {/* REMOVIDO min-h-screen */}
+    <div className="pt-24 pb-12 bg-zinc-50">  
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-8">

@@ -96,7 +96,7 @@ export function Home({ onNavigate }: HomeProps) {
             </div>
           </Card>
 
-          {/* COLUNA DIREITA (Cards Laterais) */}
+          {/* COLUNA DIREITA */}
           <div className="flex flex-col gap-3 h-full">
             
             {/* 1. Card Educacional */}

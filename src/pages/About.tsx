@@ -1,4 +1,3 @@
-// src/pages/About.tsx
 import { Card } from '../components/ui/Card';
 import { Code2, Database, LayoutTemplate, Server } from 'lucide-react';
 
@@ -34,7 +33,7 @@ export function About() {
             </Card>
           </div>
 
-          {/* Coluna Lateral (1/3 da tela) - Informações Rápidas */}
+          {/* Coluna Lateral - Informações Rápidas */}
           <div className="space-y-4">
             <Card className="bg-zinc-900 border-zinc-900 text-white">
               <h3 className="font-semibold mb-1">Status</h3>
@@ -55,7 +54,7 @@ export function About() {
           </div>
         </div>
 
-        {/* Stack Tecnológica - Agora em linha horizontal (Strip) */}
+        {/* Stack Tecnológica - Agora em linha horizontal*/}
         <div className="mt-6">
           <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-4 ml-1">Stack Tecnológica</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
