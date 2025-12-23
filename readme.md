@@ -14,13 +14,13 @@ O projeto utiliza uma stack moderna focada em performance, tipagem estática e m
 * **React 18:** Biblioteca para construção da interface.
 * **TypeScript:** Superset JavaScript para tipagem estática e segurança de código.
 * **Vite:** Build tool de nova geração para desenvolvimento rápido.
-* **Tailwind CSS:** Framework de utilitários para estilização responsiva. 🎨
-* **Recharts:** Biblioteca de composição de gráficos baseada em componentes React. 📊
-* **TanStack Query:** Gerenciamento de estado assíncrono e cache de dados. 🚀
-* **Lucide React:** Biblioteca de ícones leve e consistente. 💡
+* **Tailwind CSS:** Framework de utilitários para estilização responsiva. 
+* **Recharts:** Biblioteca de composição de gráficos baseada em componentes React. 
+* **TanStack Query:** Gerenciamento de estado assíncrono e cache de dados. 
+* **Lucide React:** Biblioteca de ícones leve e consistente. 
 
 ### Backend & Infraestrutura
-* **Node.js:** Ambiente de execução para funções serverless. ⚙️
+* **Node.js:** Ambiente de execução para funções serverless. 
 * **Vercel:** Plataforma de hospedagem e CI/CD.
 * **Axios:** Cliente HTTP para requisições externas.
 
