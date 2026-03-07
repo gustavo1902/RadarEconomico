@@ -49,7 +49,7 @@ Pré-requisitos: Node.js (versão 18 ou superior).
 
 Bash
 ```
-git clone [https://github.com/gustavo1902/RadarEconomico.git](https://github.com/gustavo1902/RadarEconomico.git)
+git clone https://github.com/gustavo1902/RadarEconomico.git
 
 cd RadarEconomico
 ```
