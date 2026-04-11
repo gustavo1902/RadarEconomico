@@ -2,23 +2,13 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { Zap, Clock } from 'lucide-react';
+import { Clock } from 'lucide-react';
 
 import { INDICATORS } from '../components/types'; 
 
 export function Dashboard() {
   const [selectedIndicatorId, setSelectedIndicatorId] = useState('ipca');
   const currentIndicator = INDICATORS.find(i => i.id === selectedIndicatorId) || INDICATORS[0];
-
-  const { data: signals } = useQuery({
-    queryKey: ['alpha-signals'],
-    queryFn: async () => {
-      const res = await axios.get('/api/signals');
-      return Array.isArray(res.data) ? res.data : [];
-    }
-  });
-
-  const currentSignal = signals?.find((s: any) => s.question.toLowerCase().includes(selectedIndicatorId)) || signals?.[0];
 
   const { data: rawResponse, isLoading } = useQuery({
     queryKey: ['indicator', selectedIndicatorId],
@@ -41,7 +31,7 @@ export function Dashboard() {
   const lastDate = chartData.length > 0 ? chartData[chartData.length - 1]?.data : '';
 
   return (
-    <div className="pt-24 pb-12 bg-zinc-50">  
+    <div className="pt-24 pb-12 bg-zinc-50 min-h-screen">  
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -52,24 +42,6 @@ export function Dashboard() {
               <span>Última data do dado: {lastDate || 'Carregando...'}</span>
             </div>
           </div>
-
-          {currentSignal && (
-            <div className="bg-zinc-900 p-4 rounded-2xl text-white flex items-center gap-4 shadow-2xl border border-zinc-800">
-               <div className="h-10 w-10 bg-amber-400 rounded-full flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-zinc-900 fill-zinc-900" />
-               </div>
-               <div>
-                  <p className="text-[10px] text-zinc-400 uppercase font-black">AlphaPred Insight</p>
-                  <p className="text-sm font-bold">{currentSignal.question}</p>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs bg-zinc-800 px-2 py-0.5 rounded text-amber-400 font-mono">
-                      {currentSignal.signal}
-                    </span>
-                    <span className="text-xs text-zinc-500">Edge: {(currentSignal.alpha * 100).toFixed(2)}%</span>
-                  </div>
-               </div>
-            </div>
-          )}
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
