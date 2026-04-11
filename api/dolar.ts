@@ -3,12 +3,7 @@ import axios from 'axios';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const date = new Date();
-    date.setDate(date.getDate() - 30);
-    const dataInicial = date.toLocaleDateString('pt-BR'); 
-
-    const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados?formato=json&dataInicial=${dataInicial}`;
-
+    const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/15?formato=json';
     const response = await axios.get(url);
 
     const formatted = response.data.map((item: any) => ({
@@ -18,6 +13,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({ data: formatted });
   } catch (error) {
-    return res.status(500).json({ error: 'Erro ao buscar dados' });
+    return res.status(500).json({ error: 'Erro ao buscar Dólar' });
   }
 }

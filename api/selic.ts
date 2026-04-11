@@ -3,12 +3,7 @@ import axios from 'axios';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const date = new Date();
-    date.setDate(date.getDate() - 30);
-    const dataInicial = date.toLocaleDateString('pt-BR');
-
-    const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=${dataInicial}`;
-
+    const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/15?formato=json';
     const response = await axios.get(url);
 
     const formatted = response.data.map((item: any) => ({
