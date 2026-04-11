@@ -2,15 +2,17 @@ import { useState } from 'react';
 import { Header } from './components/Layout/Header';
 import { Footer } from './components/Layout/Footer';
 import { Dashboard } from './pages/Dashboard';
+import { AlphaIntelligence } from './pages/AlphaIntelligence';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'dashboard' | 'about'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'dashboard' | 'about' | 'alpha-intelligence'>('home');
 
   const renderPage = () => {
     switch (currentPage) {
       case 'home': return <Home onNavigate={setCurrentPage} />;
+      case 'alpha-intelligence': return <AlphaIntelligence />;
       case 'dashboard': return <Dashboard />;
       case 'about': return <About />;
       default: return <Home onNavigate={setCurrentPage} />;
@@ -22,7 +24,6 @@ function App() {
       
       <Header currentPage={currentPage} onNavigate={setCurrentPage} />
       
-      {/* 3. flex-grow faz o conteúdo ocupar todo o espaço disponível, empurrando o footer para baixo */}
       <main className="flex-grow">
         {renderPage()}
       </main>
