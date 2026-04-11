@@ -3,14 +3,14 @@ import { useState } from 'react';
 
 interface HeaderProps {
   currentPage: string;
-  onNavigate: (page: 'home' | 'dashboard' | 'about') => void;
+  onNavigate: (page: 'home' | 'dashboard' | 'about' | 'alpha-intelligence') => void;
 }
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Função auxiliar para fechar o menu ao clicar
-  const handleNavigation = (page: 'home' | 'dashboard' | 'about') => {
+  const handleNavigation = (page: 'home' | 'dashboard' | 'about' | 'alpha-intelligence') => {
     onNavigate(page);
     setMobileMenuOpen(false);
   };
@@ -47,6 +47,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           <nav className="hidden md:flex space-x-2">
             <button onClick={() => onNavigate('home')} className={navItemClass('home')}>Início</button>
             <button onClick={() => onNavigate('dashboard')} className={navItemClass('dashboard')}>Dashboard</button>
+            <button onClick={() => onNavigate('alpha-intelligence')} className={navItemClass('alpha-intelligence')}>Inteligência Alfa</button>
             <button onClick={() => onNavigate('about')} className={navItemClass('about')}>Sobre</button>
           </nav>
 
@@ -86,6 +87,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             >
               <Info className="w-5 h-5" />
               Sobre o Projeto
+            </button>
+            
+            <button 
+              onClick={() => handleNavigation('alpha-intelligence')} 
+              className={mobileNavItemClass('alpha-intelligence')}
+            >
+              <Activity className="w-5 h-5" />
+              Inteligência Alfa
             </button>
           </div>
         </div>
