@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Zap, Activity, Crosshair, HelpCircle } from 'lucide-react';
 
 const TRANSLATIONS: Record<string, string> = {
-  "Fed raises rates?": "O Fed vai aumentar a taxa de juros americana?"
+  "Fed raises rates?": "O Fed (Federal Reserve System) vai aumentar a taxa de juros americana?"
 };
 
 export function AlphaIntelligence() {
@@ -50,26 +50,6 @@ export function AlphaIntelligence() {
                     <p className="text-3xl font-mono font-bold text-zinc-900">{totalOpps}</p>
                 </div>
             </div>
-        </div>
-
-        <div className="bg-white border border-zinc-200 rounded-2xl p-6 mb-12 shadow-sm">
-          <h2 className="text-sm font-bold text-zinc-900 mb-4 flex items-center gap-2 uppercase tracking-wide">
-            <HelpCircle className="w-4 h-4 text-zinc-400" /> Entenda as Métricas
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
-            <div>
-              <strong className="text-zinc-900 block mb-1">1. Consenso de Mercado</strong>
-              <p className="text-zinc-500">É a probabilidade que os investidores acreditam ser real neste exato momento. É o preço atual do ativo na plataforma de apostas.</p>
-            </div>
-            <div>
-              <strong className="text-amber-600 block mb-1">2. Modelo AlphaPred</strong>
-              <p className="text-zinc-500">A probabilidade estatística calculada pelo nosso algoritmo proprietário, usando dados históricos e análises quantitativas.</p>
-            </div>
-            <div>
-              <strong className="text-emerald-600 block mb-1">3. Edge (Vantagem)</strong>
-              <p className="text-zinc-500">A diferença entre o Mercado e o nosso Modelo. Um Edge alto indica que o mercado precificou errado, gerando uma oportunidade.</p>
-            </div>
-          </div>
         </div>
 
         {isLoading ? (
@@ -157,6 +137,26 @@ export function AlphaIntelligence() {
             })}
           </div>
         )}
+
+        <div className="bg-white border border-zinc-200 rounded-2xl p-6 mb-12 shadow-sm">
+          <h2 className="text-sm font-bold text-zinc-900 mb-4 flex items-center gap-2 uppercase tracking-wide">
+            <HelpCircle className="w-4 h-4 text-zinc-400" /> Entenda as Métricas
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <strong className="text-zinc-900 block mb-1">1. Consenso de Mercado</strong>
+              <p className="text-zinc-500">É a probabilidade que os investidores acreditam ser real neste exato momento. É o preço atual do ativo na plataforma de apostas.</p>
+            </div>
+            <div>
+              <strong className="text-amber-600 block mb-1">2. Modelo AlphaPred</strong>
+              <p className="text-zinc-500">A probabilidade estatística calculada pelo nosso algoritmo proprietário, usando dados históricos e análises quantitativas.</p>
+            </div>
+            <div>
+              <strong className="text-emerald-600 block mb-1">3. Edge (Vantagem)</strong>
+              <p className="text-zinc-500">A diferença entre o Mercado e o nosso Modelo. Um Edge alto indica que o mercado precificou errado, gerando uma oportunidade.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
