@@ -28,7 +28,7 @@ function App() {
         {renderPage()}
       </main>
       
-      <Footer />
+      <Footer currentPage={currentPage} />
     </div>
   );
 }
