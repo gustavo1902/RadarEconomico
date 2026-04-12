@@ -25,7 +25,7 @@ export function Home({ onNavigate }: HomeProps) {
           playsInline 
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="../public/videos/data.mp4" type="video/mp4" />
+          <source src="/videos/data.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay Escuro para contraste */}
