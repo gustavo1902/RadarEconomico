@@ -1,193 +1,183 @@
-import { useState } from 'react';
-import { ArrowRight, BarChart3, BookOpen, ShieldCheck, X, Newspaper } from 'lucide-react';
-import { AreaChart, Area, ResponsiveContainer, Tooltip } from 'recharts';
-import { Card } from '../components/ui/Card';
+import { ArrowUpRight, ShieldCheck, Newspaper, TrendingUp } from 'lucide-react';
 
 interface HomeProps {
-  onNavigate: (page: 'dashboard') => void;
+  onNavigate: (page: 'dashboard' | 'alpha-intelligence' | 'academy') => void;
 }
 
-const MOCK_DATA = [
-  { name: 'Jan', value: 400 },
-  { name: 'Fev', value: 300 },
-  { name: 'Mar', value: 550 },
-  { name: 'Abr', value: 480 },
-  { name: 'Mai', value: 690 },
-  { name: 'Jun', value: 650 },
-  { name: 'Jul', value: 800 },
-];
-
 export function Home({ onNavigate }: HomeProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const handleNavigate = (page: 'dashboard' | 'alpha-intelligence' | 'academy') => {
+    window.scrollTo(0, 0);
+    onNavigate(page);
+  };
 
   return (
-    <div className="pt-24 pb-12 bg-zinc-50">
+    <div className="bg-white font-sans">
       
-      {/* Hero Section (Novo Estilo Profissional) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex flex-col justify-between pt-24 overflow-hidden">
         
-        {/* Badge Minimalista (Estilo "Pill") */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 shadow-sm mb-8 hover:border-zinc-300 transition-colors cursor-default">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-        </div>
-        
-        {/* Título Editorial (Sans + Serif) */}
-        <h1 className="text-5xl md:text-7xl font-semibold text-zinc-900 tracking-tighter mb-6 leading-[1.1]">
-          Economia brasileira, <br/> 
-          <span className="font-serif italic text-zinc-500 font-normal">
-            descomplicada.
-          </span>
-        </h1>
-        
-        {/* Subtítulo mais sóbrio */}
-        <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-          A inteligência de dados do Banco Central em uma plataforma open-source. <br className="hidden md:block"/>
-          Sem ruído, direto ao ponto.
-        </p>
-        
-        {/* Botão High-End */}
-        <button 
-          onClick={() => onNavigate('dashboard')}
-          className="group inline-flex items-center gap-2 bg-zinc-900 text-white px-8 py-4 rounded-full font-medium hover:bg-zinc-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 ring-1 ring-zinc-900/5"
+        {/* Background Video*/}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          Explorar Dashboard
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-zinc-400 group-hover:text-white" />
-        </button>
-      </section>
+          <source src="../public/videos/data.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay Escuro para contraste */}
+        <div className="absolute inset-0 bg-zinc-950/70 z-0"></div>
 
-      {/* Grid Principal */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          
-          {/* COLUNA ESQUERDA (Card Grande) */}
-          <Card className="md:col-span-2 bg-white flex flex-col justify-between overflow-hidden p-0 border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="p-8">
-              <div className="w-12 h-12 bg-zinc-100 rounded-xl border border-zinc-200 flex items-center justify-center mb-6">
-                <BarChart3 className="w-6 h-6 text-zinc-900" />
-              </div>
-              <h3 className="text-2xl font-bold text-zinc-900 mb-2 tracking-tight">Análise Profissional</h3>
-              <p className="text-zinc-500 max-w-lg leading-relaxed">
-                Acompanhe a evolução histórica dos indicadores macroeconômicos com precisão.
-              </p>
-            </div>
-            
-            <div className="h-80 w-full mt-4 bg-gradient-to-t from-zinc-50 to-transparent relative">
-                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={MOCK_DATA} margin={{ top: 20, right: 0, left: 0, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="colorPreview" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#18181b" stopOpacity={0.1}/>
-                          <stop offset="95%" stopColor="#18181b" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                      <Tooltip cursor={false} content={<></>} />
-                      <Area type="monotone" dataKey="value" stroke="#18181b" strokeWidth={2} fillOpacity={1} fill="url(#colorPreview)" />
-                    </AreaChart>
-                 </ResponsiveContainer>
-                 <div className="absolute top-4 right-4">
-                    <span className="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-zinc-500 shadow-sm border border-zinc-200">
-                      Preview
-                    </span>
-                 </div>
-            </div>
-          </Card>
+        {/* Texto Central */}
+        <div className="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-6 leading-tight max-w-4xl">
+            Seu hub para econômia.
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto font-light leading-relaxed">
+            Integramos o rigor dos dados oficiais do Banco Central à agilidade dos modelos preditivos modernos. 
+            Decisões baseadas em fatos.
+          </p>
+        </div>
 
-          {/* COLUNA DIREITA */}
-          <div className="flex flex-col gap-3 h-full">
+        {/* Cards de Navegação Inferiores */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 pb-8 md:pb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             
-            {/* 1. Card Educacional */}
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="w-full text-left flex-1 transition-all duration-300 hover:scale-[1.01] focus:outline-none"
+            {/* Card 1: Dashboard */}
+            <div 
+              onClick={() => handleNavigate('dashboard')}
+              className="relative h-48 md:h-64 rounded-2xl overflow-hidden group cursor-pointer"
             >
-              <Card className="h-full bg-amber-50/40 border-amber-100/50 hover:border-amber-200 hover:bg-amber-50 cursor-pointer group p-5 flex flex-col justify-center">
-                <div className="flex items-center justify-between mb-3">
-                    <BookOpen className="w-6 h-6 text-amber-600/80 group-hover:scale-110 transition-transform" />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Academy</span>
-                </div>
-                <h3 className="text-lg font-bold text-zinc-900 leading-tight">
-                  Impacto no seu bolso
-                </h3>
-                <p className="text-sm text-zinc-600 mt-2 leading-snug">
-                  Entenda a correlação direta entre a Taxa Selic e a inflação oficial.
-                </p>
-              </Card>
-            </button>
-
-            {/* 2. Giro do Mercado (Com 3 notícias) */}
-            <Card className="bg-white border-zinc-200 hover:border-zinc-300 transition-colors p-5 flex flex-col justify-center">
-                <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                        <Newspaper className="w-4 h-4 text-zinc-900" />
-                        <h3 className="font-bold text-zinc-900 text-sm">Giro do Mercado</h3>
-                    </div>
-                    <div className="flex items-center gap-1.5 bg-zinc-100 px-2 py-0.5 rounded text-[10px] text-zinc-500 font-medium">
-                        <span className="relative flex h-1.5 w-1.5">
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                        </span>
-                        AGORA
-                    </div>
-                </div>
-                
-                <div className="space-y-3">
-                    <p className="text-xs text-zinc-800 font-medium leading-snug border-l-[3px] border-zinc-900 pl-3 py-0.5">
-                      "Copom indica cautela com inflação de serviços na última ata."
-                    </p>
-                    <p className="text-xs text-zinc-500 leading-snug border-l-[3px] border-zinc-100 pl-3 hover:border-zinc-300 transition-colors">
-                      Mercado reage com estabilidade no Dólar futuro.
-                    </p>
-                    <p className="text-xs text-zinc-500 leading-snug border-l-[3px] border-zinc-100 pl-3 hover:border-zinc-300 transition-colors">
-                      Ibovespa fecha em alta puxada pelo setor bancário.
-                    </p>
-                </div>
-            </Card>
-
-            {/* 3. Card Dados Confiáveis */}
-            <Card className="flex-shrink-0 bg-zinc-50 border-zinc-200 p-4">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="w-5 h-5 text-zinc-400" />
+              <img 
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=800&grayscale" 
+                alt="Dashboard"
+                className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end">
                 <div>
-                    <h3 className="text-xs font-bold text-zinc-900 uppercase tracking-wider">Fonte Oficial</h3>
-                    <p className="text-[10px] text-zinc-500">API do Banco Central (SGS)</p>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-1 block">Dados Oficiais</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">Dashboard Histórico</h3>
                 </div>
+                <ArrowUpRight className="w-6 h-6 text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </Card>
+            </div>
+
+            {/* Card 2: Alpha Intelligence */}
+            <div 
+              onClick={() => handleNavigate('alpha-intelligence')}
+              className="relative h-48 md:h-64 rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&grayscale" 
+                alt="Alpha Intelligence"
+                className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-1 block">Modelo Quantitativo</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">Inteligência Alpha</h3>
+                </div>
+                <ArrowUpRight className="w-6 h-6 text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </div>
+
+            {/* Card 3: Academy */}
+            <div 
+              onClick={() => handleNavigate('academy')}
+              className="relative h-48 md:h-64 rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800&grayscale" 
+                alt="Academy"
+                className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-900/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full p-6 flex justify-between items-end">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold mb-1 block">Aprenda</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">Academy</h3>
+                </div>
+                <ArrowUpRight className="w-6 h-6 text-white group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* MODAL */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm transition-opacity" onClick={() => setIsModalOpen(false)}></div>
-          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200 border border-zinc-100">
-            <div className="bg-zinc-50/50 px-6 py-4 border-b border-zinc-100 flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-zinc-500" />
-                <h3 className="font-bold text-zinc-900 text-sm uppercase tracking-wide">Conceitos Básicos</h3>
+      {/* SEÇÃO GIRO DO MERCADO */}
+      <section className="py-24 bg-white relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex items-center justify-between mb-12 border-b border-zinc-200 pb-6">
+              <div className="flex items-center gap-4">
+                  <div className="bg-zinc-900 p-2 rounded-md">
+                    <Newspaper className="w-5 h-5 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-black text-zinc-900 tracking-tight">Giro do Mercado</h2>
               </div>
-              <button onClick={() => setIsModalOpen(false)} className="p-1 hover:bg-zinc-100 rounded-md text-zinc-400 transition-colors"><X className="w-5 h-5" /></button>
-            </div>
-            <div className="p-6 space-y-5 text-zinc-600 leading-relaxed overflow-y-auto max-h-[60vh]">
-              <div>
-                <strong className="text-zinc-900 block mb-1">O que é a Selic?</strong>
-                <p className="text-sm">É a taxa básica de juros da economia. É o principal instrumento do Banco Central para controlar a inflação. Quando ela sobe, o crédito fica mais caro e o consumo diminui.</p>
+              
+              {/* Badge LIVE Monocromático */}
+              <div className="flex items-center gap-2 text-xs font-bold text-zinc-900 bg-zinc-100 px-3 py-1.5 rounded-full border border-zinc-200">
+                  <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-zinc-500 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-900"></span>
+                  </span>
+                  LIVE
               </div>
-              <div className="h-px bg-zinc-100"></div>
-              <div>
-                <strong className="text-zinc-900 block mb-1">E o IPCA?</strong>
-                <p className="text-sm">É o termômetro oficial da inflação no Brasil. Ele mede a variação de preços de uma cesta de produtos e serviços consumidos pelas famílias.</p>
-              </div>
-            </div>
-            <div className="bg-zinc-50 px-6 py-4 border-t border-zinc-100 text-right">
-              <button onClick={() => setIsModalOpen(false)} className="px-4 py-2 bg-zinc-900 text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors shadow-sm">Entendi</button>
-            </div>
           </div>
+
+          <div className="space-y-6">
+            <NewsCard 
+              category="POLÍTICA MONETÁRIA" 
+              title="Copom indica cautela com inflação de serviços na última ata oficial divulgada ao mercado." 
+              time="HÁ 15 MINUTOS"
+              icon={<ShieldCheck className="w-5 h-5 text-zinc-900" />}
+            />
+            <NewsCard 
+              category="BOLSA" 
+              title="Ibovespa fecha em alta puxada pelo setor bancário após série de resultados trimestrais positivos." 
+              time="HÁ 1 HORA"
+              icon={<TrendingUp className="w-5 h-5 text-zinc-900" />}
+            />
+            <NewsCard 
+              category="CÂMBIO" 
+              title="Mercado reage com estabilidade no Dólar futuro aguardando novos dados de emprego dos EUA (Payroll)." 
+              time="HÁ 2 HORAS"
+              icon={<TrendingUp className="w-5 h-5 text-zinc-900" />}
+            />
+          </div>
+          
         </div>
-      )}
+      </section>
     </div>
   );
+}
+
+function NewsCard({ category, title, time, icon }: { category: string, title: string, time: string, icon: any }) {
+    return (
+        <div className="group bg-zinc-50 border border-zinc-200 p-8 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-zinc-900 hover:border-zinc-900 transition-all duration-500">
+            <div className="flex items-start gap-6">
+                <div className="mt-1 bg-white p-3 rounded-xl border border-zinc-200 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                    {icon}
+                </div>
+                <div>
+                    <span className="text-[10px] font-black text-zinc-500 tracking-[0.2em] uppercase group-hover:text-zinc-400 transition-colors">
+                      {category}
+                    </span>
+                    <h4 className="text-lg font-semibold text-zinc-900 mt-2 leading-relaxed group-hover:text-white transition-colors duration-500">
+                      {title}
+                    </h4>
+                </div>
+            </div>
+            <div className="text-right flex-shrink-0 md:pl-6 border-t md:border-t-0 md:border-l border-zinc-200 group-hover:border-zinc-700 pt-4 md:pt-0 mt-2 md:mt-0 transition-colors">
+                <span className="text-[10px] font-bold text-zinc-400 tracking-[0.1em]">{time}</span>
+            </div>
+        </div>
+    );
 }
