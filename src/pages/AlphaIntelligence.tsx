@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Zap, Activity, Crosshair, HelpCircle } from 'lucide-react';
+import { Activity, Crosshair, HelpCircle } from 'lucide-react';
 
 const TRANSLATIONS: Record<string, string> = {
-  "Fed raises rates?": "O Fed (Federal Reserve System) vai aumentar a taxa de juros americana?"
+  "Fed raises rates?": "O Fed (Federal Reserve) vai aumentar a taxa de juros americana?",
+  "US GDP Growth > 2%?": "O crescimento do PIB dos EUA será maior que 2%?",
+  "Bitcoin reaches 100k?": "O Bitcoin vai atingir a marca de US$ 100.000?"
 };
 
 export function AlphaIntelligence() {
@@ -28,9 +30,6 @@ export function AlphaIntelligence() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-zinc-200 pb-8">
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
-                    <div className="bg-zinc-900 p-2.5 rounded-xl shadow-lg border border-zinc-700">
-                    <Zap className="w-6 h-6 text-amber-400 fill-amber-400" />
-                    </div>
                     <h1 className="text-4xl font-black text-zinc-900 tracking-tight">AlphaPred Engine</h1>
                 </div>
                 <p className="text-zinc-500 text-lg">
@@ -138,25 +137,26 @@ export function AlphaIntelligence() {
           </div>
         )}
 
-        <div className="bg-white border border-zinc-200 rounded-2xl p-6 mb-12 shadow-sm">
-          <h2 className="text-sm font-bold text-zinc-900 mb-4 flex items-center gap-2 uppercase tracking-wide">
-            <HelpCircle className="w-4 h-4 text-zinc-400" /> Entenda as Métricas
+        <div className="mt-16 bg-white border border-zinc-200 rounded-2xl p-8 shadow-sm">
+          <h2 className="text-base font-bold text-zinc-900 mb-6 flex items-center gap-2 uppercase tracking-wide">
+            <HelpCircle className="w-5 h-5 text-zinc-400" /> Entenda as Métricas
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
+          <div className="grid md:grid-cols-3 gap-8 text-sm">
             <div>
-              <strong className="text-zinc-900 block mb-1">1. Consenso de Mercado</strong>
-              <p className="text-zinc-500">É a probabilidade que os investidores acreditam ser real neste exato momento. É o preço atual do ativo na plataforma de apostas.</p>
+              <strong className="text-zinc-900 block mb-2 text-base">1. Consenso de Mercado</strong>
+              <p className="text-zinc-500 leading-relaxed">É a probabilidade que os investidores acreditam ser real neste exato momento. Representa o preço atual do ativo nas plataformas de apostas e mercados de previsão.</p>
             </div>
             <div>
-              <strong className="text-amber-600 block mb-1">2. Modelo AlphaPred</strong>
-              <p className="text-zinc-500">A probabilidade estatística calculada pelo nosso algoritmo proprietário, usando dados históricos e análises quantitativas.</p>
+              <strong className="text-amber-600 block mb-2 text-base">2. Modelo AlphaPred</strong>
+              <p className="text-zinc-500 leading-relaxed">A probabilidade estatística calculada pelo nosso algoritmo proprietário. Utilizamos dados históricos e análises quantitativas para chegar ao que consideramos o valor "justo".</p>
             </div>
             <div>
-              <strong className="text-emerald-600 block mb-1">3. Edge (Vantagem)</strong>
-              <p className="text-zinc-500">A diferença entre o Mercado e o nosso Modelo. Um Edge alto indica que o mercado precificou errado, gerando uma oportunidade.</p>
+              <strong className="text-emerald-600 block mb-2 text-base">3. Edge (Vantagem)</strong>
+              <p className="text-zinc-500 leading-relaxed">A diferença matemática entre o Mercado e o nosso Modelo. Um Edge alto indica que o mercado precificou o evento de forma errada, gerando uma oportunidade estatística.</p>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );
