@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Activity, Crosshair, HelpCircle } from 'lucide-react';
+import { Activity, Crosshair, HelpCircle, ServerCrash, RefreshCw } from 'lucide-react';
 
 const TRANSLATIONS: Record<string, string> = {
   "Fed raises rates?": "O Fed (Federal Reserve) vai aumentar a taxa de juros americana?",
@@ -9,14 +9,46 @@ const TRANSLATIONS: Record<string, string> = {
 };
 
 export function AlphaIntelligence() {
-  const { data: signals, isLoading } = useQuery({
+  const { data: signals, isLoading, isError, refetch } = useQuery({
     queryKey: ['alpha-signals'],
     queryFn: async () => {
       const res = await axios.get('/api/signals');
       return Array.isArray(res.data) ? res.data : [];
     },
-    refetchInterval: 1000 * 60 * 5
+    refetchInterval: 1000 * 60 * 5,
+    retry: 1 
   });
+
+
+  if (isError) {
+    return (
+      <div className="pt-32 pb-20 bg-zinc-50 min-h-screen flex items-center justify-center">
+        <div className="max-w-md w-full mx-4">
+          <div className="bg-white border border-zinc-200 rounded-[2rem] p-8 shadow-xl text-center">
+            <div className="w-16 h-16 bg-red-50 border border-red-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <ServerCrash className="w-8 h-8 text-red-500" />
+            </div>
+            
+            <h2 className="text-2xl font-black text-zinc-900 tracking-tight mb-2">
+              Motor Alpha Indisponível
+            </h2>
+            
+            <p className="text-zinc-500 text-sm leading-relaxed mb-8">
+              Nosso servidor preditivo está temporariamente fora do ar para manutenção ou economia de recursos da nuvem. Por favor, tente novamente em alguns instantes.
+            </p>
+            
+            <button 
+              onClick={() => refetch()} 
+              className="w-full flex items-center justify-center gap-2 bg-zinc-900 text-white font-bold text-xs uppercase tracking-widest py-4 rounded-xl hover:bg-zinc-800 transition-colors"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Tentar Novamente
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const totalOpps = signals?.length || 0;
   const avgAlpha = signals && signals.length > 0 
@@ -27,6 +59,7 @@ export function AlphaIntelligence() {
     <div className="pt-24 pb-12 bg-zinc-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* HEADER DA PÁGINA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-zinc-200 pb-8">
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
@@ -91,7 +124,6 @@ export function AlphaIntelligence() {
                   </h3>
 
                   <div className="space-y-6">
-                    
                     <div>
                         <div className="flex justify-between text-xs font-bold mb-2 uppercase tracking-wide">
                             <span className="text-zinc-400">Consenso Mercado</span>
@@ -113,7 +145,6 @@ export function AlphaIntelligence() {
                             <div className="bg-amber-400 h-2.5 rounded-full absolute top-0 left-0" style={{ width: `${mdlProb}%` }}></div>
                         </div>
                     </div>
-
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-zinc-100 flex justify-between items-center">
