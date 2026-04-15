@@ -1,14 +1,18 @@
-export default async function handler(req: any, res: any) {
-  try {
-    const response = await fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/12?formato=json');
-    
-    if (!response.ok) {
-      throw new Error(`Erro na API do BCB: ${response.status}`);
-    }
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import axios from 'axios';
 
-    const data = await response.json();
-    res.status(200).json(data);
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  try {
+    const url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/15?formato=json';
+    const response = await axios.get(url);
+
+    const formatted = response.data.map((item: any) => ({
+      data: item.data,
+      valor: Number(item.valor)
+    }));
+
+    return res.status(200).json({ data: formatted });
   } catch (error) {
-    res.status(500).json({ error: 'Falha ao buscar dados de câmbio do BCB' });
+    return res.status(500).json({ error: 'Erro ao buscar dados de câmbio do BCB' });
   }
 }
